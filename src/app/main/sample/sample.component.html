@@ -1,0 +1,9 @@
+<div class="page-layout blank p-24" fusePerfectScrollbar>
+    <div class="dropzone" (drop)="drop($event)" (dragover)="allowDrop($event)">
+        <label for="file-input">
+            <p>คุณสามารถลากและปล่อยไฟล์ Excel ในนี้เพื่ออัพโหลด</p>
+            <p>หรือ คลิ๊กเพื่อเลือกไฟล์ Excel จากไดเรกทอรีของท่าน</p>
+            <input name="detectFiles" id="file-input" type="file" (change)="detectFiles($event)" accept=".xls,.xlsx" />
+        </label>
+    </div>
+</div>

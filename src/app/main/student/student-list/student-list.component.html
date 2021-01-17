@@ -1,0 +1,90 @@
+<mat-table #table [dataSource]="students">
+    <!-- Avatar Column -->
+    <ng-container matColumnDef="avatar">
+        <mat-header-cell *matHeaderCellDef></mat-header-cell>
+        <mat-cell *matCellDef="let student">
+            <img
+                class="avatar"
+                *ngIf="student.avatar"
+                [alt]="student.firstname"
+                [alt]="student.lastname"
+                [src]="student.avatar"
+            />
+        </mat-cell>
+    </ng-container>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="firstname">
+        <mat-header-cell *matHeaderCellDef>ชื่อนักเรียน</mat-header-cell>
+        <mat-cell *matCellDef="let student">
+            <p class="text-truncate font-weight-600">{{ student.firstname }} {{ student.lastname }}</p>
+        </mat-cell>
+    </ng-container>
+
+    <!-- StudentId Column -->
+    <ng-container matColumnDef="studentid">
+        <mat-header-cell *matHeaderCellDef fxHide fxShow.gt-sm>รหัสนักเรียน</mat-header-cell>
+        <mat-cell *matCellDef="let student" fxHide fxShow.gt-sm>
+            <p class="studentid text-truncate">
+                {{ student.studentid }}
+            </p>
+        </mat-cell>
+    </ng-container>
+
+    <!-- Phone Column -->
+    <ng-container matColumnDef="phone">
+        <mat-header-cell *matHeaderCellDef fxHide fxShow.gt-md>เบอร์โทรศัพท์</mat-header-cell>
+        <mat-cell *matCellDef="let student" fxHide fxShow.gt-md>
+            <p class="phone text-truncate">
+                {{ student.phone }}
+            </p>
+        </mat-cell>
+    </ng-container>
+
+    <!-- Job Title Column -->
+    <ng-container matColumnDef="jobTitle">
+        <mat-header-cell *matHeaderCellDef fxHide fxShow.gt-lg>Job title</mat-header-cell>
+        <mat-cell *matCellDef="let student" fxHide fxShow.gt-lg>
+            <p class="job-title text-truncate">
+                {{ student.jobTitle }}
+            </p>
+        </mat-cell>
+    </ng-container>
+
+    <!-- Company Column -->
+    <ng-container matColumnDef="company">
+        <mat-header-cell *matHeaderCellDef fxHide fxShow.gt-lg>Company</mat-header-cell>
+        <mat-cell *matCellDef="let student" fxHide fxShow.gt-lg>
+            <p class="company text-truncate">
+                {{ student.company }}
+            </p>
+        </mat-cell>
+    </ng-container>
+
+    <!-- Buttons Column -->
+    <ng-container matColumnDef="buttons">
+        <mat-header-cell *matHeaderCellDef></mat-header-cell>
+        <mat-cell *matCellDef="let student">
+            <div fxFlex="row" fxLayoutAlign="end center">
+                <button mat-icon-button aria-label="More" [matMenuTriggerFor]="moreMenu">
+                    <mat-icon class="secondary-text">more_vert</mat-icon>
+                </button>
+                <mat-menu #moreMenu="matMenu">
+                    <button mat-menu-item aria-label="remove" (click)="onDelete(student._id)">
+                        <mat-icon>delete</mat-icon>
+                        <span>Remove</span>
+                    </button>
+                </mat-menu>
+            </div>
+        </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row
+        *matRowDef="let student; columns: displayedColumns"
+        class="contact"
+        (click)="editStudent(student)"
+        matRipple
+    >
+    </mat-row>
+</mat-table>
