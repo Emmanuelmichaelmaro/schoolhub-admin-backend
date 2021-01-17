@@ -1,0 +1,49 @@
+<mat-table #table [dataSource]="collaborators">
+    <ng-container matColumnDef="email">
+        <mat-header-cell *matHeaderCellDef fxHide fxShow.gt-sm>Email</mat-header-cell>
+        <mat-cell *matCellDef="let colaborator" fxHide fxShow.gt-sm>
+            <p class="email text-truncate">
+                {{ colaborator.email }}
+            </p>
+        </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="schoolid">
+        <mat-header-cell *matHeaderCellDef fxHide fxShow.gt-sm>schoolid</mat-header-cell>
+        <mat-cell *matCellDef="let colaborator" fxHide fxShow.gt-sm>
+            <p class="phone text-truncate">
+                {{ colaborator.schoolid }}
+            </p>
+        </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="buttons">
+        <mat-header-cell *matHeaderCellDef></mat-header-cell>
+        <mat-cell *matCellDef="let colaborator">
+            <div fxFlex="column" fxLayoutAlign="end center">
+                <button
+                    mat-icon-button
+                    [matMenuTriggerFor]="moreMenu"
+                    aria-label="More"
+                    (click)="$event.stopPropagation()"
+                >
+                    <mat-icon class="secondary-text">more_vert</mat-icon>
+                </button>
+
+                <mat-menu #moreMenu="matMenu">
+                    <button mat-menu-item>
+                        <mat-icon>link</mat-icon>
+                        <span>CopyLink</span>
+                    </button>
+                    <button mat-menu-item aria-label="remove" (click)="onDelete(colaborator._id)">
+                        <mat-icon>delete</mat-icon>
+                        <span>Cancel</span>
+                    </button>
+                </mat-menu>
+            </div>
+        </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let contact; columns: displayedColumns" class="contact" matRipple> </mat-row>
+</mat-table>

@@ -1,0 +1,65 @@
+<div class="page-layout blank p-24" fusePerfectScrollbar (paste)="onPaste($event.clipboardData.getData('text/plain'))">
+    <!-- <p>
+    admission-list works!
+  </p>
+
+  <div fxLayout="row">
+    <div>a</div>
+    <div>b</div>
+  </div>
+  <div fxLayout="row">
+    <div>2</div>
+    <div>3</div>
+  </div>
+  <div fxLayout="row">
+    <div>9</div>
+    <div>8</div>
+  </div>
+  <div fxLayout="column">
+    <span>1</span>
+    <span>2</span>
+  </div> -->
+    <!-- <div fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="gappx" *ngFor="let item of list">
+    <div class="p-2">{{item.seq}}</div>
+    <div>{{item.stdno}}</div>
+    <div>{{item.fullname}}</div>
+    <div></div>
+    <div></div>
+  </div> -->
+
+    <mat-table #table [dataSource]="dataSource" class="mat-elevation-z8">
+        <ng-container matColumnDef="stdno">
+            <mat-header-cell #th *matHeaderCellDef> รหัสนักเรียน </mat-header-cell>
+            <mat-cell #td *matCellDef="let element"> {{ element.stdno }} </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="fullname">
+            <mat-header-cell #th *matHeaderCellDef> ชื่อ-สกุล </mat-header-cell>
+            <mat-cell #td *matCellDef="let element"> {{ element.fullname }} </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="nickname">
+            <mat-header-cell #th *matHeaderCellDef> ชื่อเล่น </mat-header-cell>
+            <mat-cell #td *matCellDef="let element"> {{ element.nickname }} </mat-cell>
+        </ng-container>
+        <mat-header-row #tr *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row
+            #tr
+            *matRowDef="let row; columns: displayedColumns"
+            (keydown)="tableKeydown($event)"
+            (click)="selection.select(row)"
+        ></mat-row>
+    </mat-table>
+
+    <!-- <div fxLayout="column" fxLayout.gt-sm="row wrap">
+    <div fxFlex="100" fxFlex.gt-sm="100" fxLayoutAlign="center">1</div>
+    <div fxFlex="100" fxFlex.gt-sm="30" fxLayoutAlign="center">2</div>
+    <div fxFlex="100" fxFlex.gt-sm="30" fxLayoutAlign="center">3</div>
+    <div fxFlex="100" fxFlex.gt-sm="30" fxLayoutAlign="center">4</div>
+    <div fxFlex="100" fxFlex.gt-sm="100" fxLayoutAlign="center">5</div>
+    <div fxFlex="100" fxFlex.gt-sm="50" fxLayoutAlign="center">6</div>
+    <div fxFlex="100" fxFlex.gt-sm="50" fxLayoutAlign="center">7</div>
+    <div fxFlex="100" fxFlex.gt-sm="100" fxLayoutAlign="center">8</div>
+    <div fxFlex="100" fxFlex.gt-sm="50" fxLayoutAlign="center">9</div>
+    <div fxFlex="100" fxFlex.gt-sm="50" fxLayoutAlign="center">10</div>
+
+  </div> -->
+</div>
